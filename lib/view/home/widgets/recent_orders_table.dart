@@ -25,25 +25,28 @@ class RecentOrdersTable extends StatelessWidget {
               ),
             ),
           ),
-          DataTable(
-            columns: const [
-              DataColumn(label: Text('Order ID')),
-              DataColumn(label: Text('Customer')),
-              DataColumn(label: Text('Total')),
-              DataColumn(label: Text('Status')),
-            ],
-            rows: orders
-                .map(
-                  (order) => DataRow(
-                    cells: [
-                      DataCell(Text(order.orderId)),
-                      DataCell(Text(order.customer)),
-                      DataCell(Text('\$${order.total.toStringAsFixed(2)}')), // Format total to 2 decimal places
-                      DataCell(Text(order.status)),
-                    ],
-                  ),
-                )
-                .toList(),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: DataTable(
+              columns: const [
+                DataColumn(label: Text('Order ID')),
+                DataColumn(label: Text('Customer')),
+                DataColumn(label: Text('Total')),
+                DataColumn(label: Text('Status')),
+              ],
+              rows: orders
+                  .map(
+                    (order) => DataRow(
+                      cells: [
+                        DataCell(Text(order.orderId)),
+                        DataCell(Text(order.customer)),
+                        DataCell(Text('\$${order.total.toStringAsFixed(2)}')), // Format total to 2 decimal places
+                        DataCell(Text(order.status)),
+                      ],
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         ],
       ),
