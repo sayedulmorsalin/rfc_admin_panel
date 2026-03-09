@@ -6,6 +6,13 @@ class OrdersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Compute a bounded table width to prevent Expanded from getting
+    // unbounded constraints inside the horizontal SingleChildScrollView.
+    // 40 = page padding (20×2), 32 = card padding (16×2).
+    final tableWidth = (MediaQuery.sizeOf(context).width - 72).clamp(
+      650.0,
+      double.infinity,
+    );
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -40,8 +47,8 @@ class OrdersPage extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(minWidth: 650),
+                child: SizedBox(
+                  width: tableWidth,
                   child: Column(
                     children: [
                       const _HeaderRow(),

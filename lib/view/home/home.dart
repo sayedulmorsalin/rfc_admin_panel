@@ -35,20 +35,32 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_items[_selectedIndex].title),
+        backgroundColor: const Color(0xFF1565C0),
+        title: const Text(
+          'RFC Admin Panel',
+          style: TextStyle(
+            color: Color(0xFFFFD600),
+            fontWeight: FontWeight.w800,
+            fontSize: 20,
+            letterSpacing: 0.5,
+          ),
+        ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search, color: Colors.white),
+          ),
           const SizedBox(width: 4),
           Padding(
             padding: const EdgeInsets.only(right: 14),
             child: CircleAvatar(
               radius: 16,
-              backgroundColor: Theme.of(context).colorScheme.primary,
+              backgroundColor: const Color(0xFFFFD600),
               child: const Text(
                 'A',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF1565C0),
+                  fontWeight: FontWeight.w800,
                 ),
               ),
             ),
