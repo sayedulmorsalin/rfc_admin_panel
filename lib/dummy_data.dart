@@ -25,4 +25,28 @@ final List<Order> dummyOrders = [
     total: 32.10,
     status: 'Delivered',
   ),
+  Order(
+    orderId: '#12349',
+    customer: 'Olivia Brown',
+    total: 89.00,
+    status: 'Pending',
+  ),
+  Order(
+    orderId: '#12350',
+    customer: 'Noah Davis',
+    total: 12.25,
+    status: 'Cancelled',
+  ),
+  Order(
+    orderId: '#12351',
+    customer: 'Amelia Wilson',
+    total: 57.99,
+    status: 'Shipped',
+  ),
+  Order(
+    orderId: '#12352',
+    customer: 'Liam Taylor',
+    total: 130.40,
+    status: 'Processing',
+  ),
 ];

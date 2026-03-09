@@ -22,16 +22,24 @@ class RecentOrdersTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Recent Orders',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(18, 18, 18, 10),
+            child: Row(
+              children: [
+                const Text(
+                  'Recent Orders',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                ),
+                const Spacer(),
+                TextButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.north_east, size: 16),
+                  label: const Text('View all'),
+                ),
+              ],
             ),
           ),
           ListView.builder(
@@ -40,10 +48,12 @@ class RecentOrdersTable extends StatelessWidget {
             itemCount: orders.length,
             itemBuilder: (context, index) {
               final order = orders[index];
+              final statusColor = _statusColor(context, order.status);
+
               return Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
+                  horizontal: 18,
+                  vertical: 10,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +64,7 @@ class RecentOrdersTable extends StatelessWidget {
                         Expanded(
                           child: Text(
                             order.orderId,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
                         Container(
@@ -63,16 +73,13 @@ class RecentOrdersTable extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: _statusColor(
-                              context,
-                              order.status,
-                            ).withOpacity(0.12),
+                            color: statusColor.withValues(alpha: 0.13),
                             borderRadius: BorderRadius.circular(999),
                           ),
                           child: Text(
                             order.status,
                             style: TextStyle(
-                              color: _statusColor(context, order.status),
+                              color: statusColor,
                               fontWeight: FontWeight.w600,
                               fontSize: 12,
                             ),
@@ -80,27 +87,36 @@ class RecentOrdersTable extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           order.customer,
-                          style: TextStyle(color: Colors.grey.shade600),
+                          style: TextStyle(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         Text(
                           '\$${order.total.toStringAsFixed(2)}',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
                       ],
                     ),
                     if (index < orders.length - 1)
-                      Divider(color: Colors.grey.shade300, height: 16),
+                      Divider(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        height: 22,
+                      ),
                   ],
                 ),
               );
             },
           ),
+          const SizedBox(height: 6),
         ],
       ),
     );

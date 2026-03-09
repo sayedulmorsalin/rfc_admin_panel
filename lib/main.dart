@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rfc_admin_panel/theme/app_theme.dart';
 import 'package:rfc_admin_panel/view/home/home.dart';
 
 void main() {
@@ -13,13 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Admin Panel',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-          brightness: Brightness.light,
-        ),
-      ),
+      theme: AppTheme.light,
       home: const Home(),
     );
   }
